@@ -1,0 +1,24 @@
+<div id="order-call-modal" class="order-call-modal">
+    <div class="order-call-modal-content">
+        <span class="close" onclick="closeOrderCallForm()">&times;</span>
+        <h2>Request a Call-Back</h2>
+        <form id="order-call-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="time">Preferred Time for Call</label>
+            <input type="text" id="time" name="time" required placeholder="e.g., 10:00 AM - 12:00 PM">
+
+            <button type="button" onclick="submitOrderCallForm()">Submit</button>
+
+            <!-- Agreement link -->
+            <p><a href="{agreement_link}" target="_blank">Read our terms and agreement</a></p>
+        </form>
+    </div>
+</div>
