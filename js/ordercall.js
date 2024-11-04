@@ -1,156 +1,174 @@
-$(document).ready(function (e) {
-    let widthM = window.screen.width;
-    let div = $("div");
-    if (widthM < 600) {
-        $("head").append("<meta name=\"viewport\" content=\"width=500, user-scalable=yes\">");
-    } else if (widthM < 800) {
-        $("head").append("<meta name=\"viewport\" content=\"width=600, user-scalable=yes\">");
-    }
-    $(".ordercallform .backgroundhide").hide();
-    $(".ordercallform .errorbot").hide();
+$(document).ready(function () {
+    const screenWidth = window.screen.width;
+    const $orderCallForm = $(".ordercallform");
+    const $backgroundHide = $orderCallForm.find(".backgroundhide");
+    const $errorBot = $orderCallForm.find(".errorbot");
+    const $submitBtn = $orderCallForm.find("input[type=submit]");
 
-    /* Скрыть/показать форму*/
-    $(".ordercallink").click(function () {
-        $(".ordercallform .backgroundhide").fadeIn(50);
+    initializeViewport();
+    initializeFormDisplay();
+    initializeRequiredFields();
+    initializeAgreementCheck();
+    initializePhoneValidation();
+    initializeSlider();
+    initializeCaptchaVisibility();
+
+    // Viewport meta tag adjustments for mobile screens
+    function initializeViewport() {
+        if (screenWidth < 600) {
+            $("head").append('<meta name="viewport" content="width=500, user-scalable=yes">');
+        } else if (screenWidth < 800) {
+            $("head").append('<meta name="viewport" content="width=600, user-scalable=yes">');
+        }
+    }
+
+    // Hide the form elements initially
+    function initializeFormDisplay() {
+        $backgroundHide.hide();
+        $errorBot.hide();
+
+        $(".ordercallink").click(() => showForm());
+        $orderCallForm.find(".box_shadow, .close").click(() => hideForm());
+    }
+
+    function showForm() {
+        $backgroundHide.fadeIn(50);
         $("html").css("overflow", "hidden");
-    });
-    $(".ordercallform .box_shadow").click(function () {
-        $(".ordercallform .backgroundhide").fadeOut(50);
-        $("html").css("overflow", "auto");
-    });
-    $(".ordercallform .close").click(function () {
-        $(".ordercallform .backgroundhide").fadeOut(50);
-        $("html").css("overflow", "auto");
-    });
-
-    /* Проверить обязательные поля */
-    $(".ordercallform .message").each(function () {
-        $(this).prev().addClass("important empty");
-    });
-
-    /* Проверить согласие с политикой */
-    if (div.is(".ordercallform .agreeblock")) {
-        $(".ordercallform .agreeform").on("change", function () {
-            if ($(".ordercallform .agreeform").prop("checked")) {
-                submit.attr("disabled", false);
-
-            } else {
-                submit.attr("disabled", true);
-            }
-        });
-    } else {
-        submit.attr("disabled", false);
     }
 
-    /* Маска для телефона, проверка номера (работает, надо раскомментировать)*/
-    //$(".ordercallform .phonemask").mask("+7 (999) 999-9999");
-
-    //$(".ordercallform .phonemask").on("focus click", function() {
-    //  $(this)[0].setSelectionRange(4, 4);
-    //})
-
-    /* Проверка номера без маски */
-    let re = /^\d[\d() -]{4,14}\d$/;
-
-    function validPhone() {
-        let re = new RegExp(/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/);
-        let phone = $(".ordercallform .namefield input[name=phone]").val();
-        return re.test(phone);
+    function hideForm() {
+        $backgroundHide.fadeOut(50);
+        $("html").css("overflow", "auto");
     }
 
-    /* Скрыть/показать сообщения, что поле не заполнено */
-    function checkInput() {
-        $(".ordercallform input[type=text].important").each(function () {
-            if ($(this).val() !== "") {
-                $(this).removeClass("empty");
-                $(this).next().hide();
-            } else {
-                $(this).addClass("empty");
-            }
+    // Mark required fields and add listeners for policy agreement
+    function initializeRequiredFields() {
+        $orderCallForm.find(".message").each(function () {
+            $(this).prev().addClass("important empty");
         });
     }
 
-    /* Обработка клика на кнопку отправки формы */
-    let submit = $(".ordercallform input[type=submit]");
-    submit.click(function () {
-        if (submit.attr("disabled", true)) {
-            submit.removeAttr("disabled");
-        }
-        checkInput();
-        validPhone();
-        let empty = $(".ordercallform .empty");
-
-        if (empty.length > 0 || validPhone() === false) {
-            empty.each(function () {
-                /* Отмена отправки формы */
-                $(".ordercallsent").submit(function (event) {
-                    event.preventDefault();
-                });
-                $(this).next().show();
-                $(this).next().text("Это поле обязательное");
+    // Enable/disable submit button based on policy agreement
+    function initializeAgreementCheck() {
+        const $agreeForm = $orderCallForm.find(".agreeform");
+        if ($agreeForm.length) {
+            $agreeForm.on("change", function () {
+                $submitBtn.prop("disabled", !$agreeForm.is(":checked"));
             });
-            let validNumber = $(".ordercallform .namefield input[name=phone]");
-            if (validPhone() === false && validNumber.val() !== "") {
-                validNumber.next().show();
-                validNumber.next().text("Введен некорректный номер");
-            }
         } else {
-            $(".ordercallsent").submit(function () {
-                let str = $(this).serialize();
-                /* Отправка сообщения на ajax */
-                $.ajax({
-                    type: "POST",
-                    url: "/ordercall/send/", // Поменять потом!!!
-                    data: str,
-                    dataType: "json",
-                    success: function (msg) {
-                        result = $.parseJSON(msg);
-                        $(".ordercallform .hideform").hide();
-                        $(".ordercallform .form").css({"margin-top": "100px"});
-                        $(".ordercallform .headerinfo").html("Форма отправлена успешно");
-                    },
-                    error: function (msg) { // Данные не отправлены
-                        //$(".ordercallform .headerinfo").html("Форма не отправлена ");
-                        $(".ordercallform .errorbot").show();
-                    }
-                });
-                return false;
-            });
-        }
-    });
-
-    /* Ползунок со временем */
-    let timeline = $(".ordercallform .polzunok");
-    timeline.slider({
-        animate: "slow",
-        range: true,
-        min: 12,
-        step: 1,
-        max: 21,
-        values: [14, 19],
-        slide: function (event, ui) {
-            let one = ui.values[0];
-            let two = ui.values[1];
-            $(".ordercallform input[name=timefrom]").val(ui.values[0]);
-            $(".ordercallform input[name=timeto]").val(ui.values[1]);
-        }
-    });
-
-    $(".ordercallform input[name=timefrom]").val(timeline.slider("values", 0));
-    $(".ordercallform input[name=timeto]").val(timeline.slider("values", 1));
-    let timeprint = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
-
-    if (div.is("#resulttime")) {
-        for (i = 0; i < timeprint.length; i++) {
-            document.getElementById("resulttime").innerHTML += "<div>" + timeprint[i] + "</div>";
+            $submitBtn.prop("disabled", false);
         }
     }
 
-    /* Скрыть капчу (невидимую)*/
-    let captcha = $(".ordercallform .wa-captcha .g-recaptcha");
-    if (div.is(".ordercallform .wa-captcha .g-recaptcha")) {
-        if (captcha.attr("data-size") === "invisible") {
-            captcha.css({"height": "0px"});
+    // Phone validation
+    function initializePhoneValidation() {
+        const phoneRegex = /^\d[\d() -]{4,14}\d$/;
+        const $phoneInput = $orderCallForm.find("input[name=phone]");
+
+        $submitBtn.click(() => handleSubmit());
+
+        function handleSubmit() {
+            checkRequiredFields();
+            if (!isFormValid()) {
+                showValidationMessages();
+            } else {
+                submitForm();
+            }
+        }
+
+        function isFormValid() {
+            return !$orderCallForm.find(".empty").length && isValidPhone();
+        }
+
+        function isValidPhone() {
+            const phone = $phoneInput.val();
+            return phoneRegex.test(phone);
+        }
+
+        function checkRequiredFields() {
+            $orderCallForm.find("input[type=text].important").each(function () {
+                const $input = $(this);
+                if ($input.val()) {
+                    $input.removeClass("empty");
+                    $input.next(".message").hide();
+                } else {
+                    $input.addClass("empty");
+                }
+            });
+        }
+
+        function showValidationMessages() {
+            $orderCallForm.find(".empty").each(function () {
+                const $message = $(this).next(".message");
+                $message.text("Это поле обязательное").show();
+            });
+            if (!isValidPhone() && $phoneInput.val()) {
+                $phoneInput.next(".message").text("Введен некорректный номер").show();
+            }
+        }
+    }
+
+    // Submit form via AJAX
+    function submitForm() {
+        const formData = $(".ordercallsent").serialize();
+        $.ajax({
+            type: "POST",
+            url: "/ordercall/send/", // Update URL as needed
+            data: formData,
+            dataType: "json",
+            success: function (response) {
+                handleFormSuccess();
+            },
+            error: function () {
+                handleFormError();
+            }
+        });
+    }
+
+    function handleFormSuccess() {
+        $orderCallForm.find(".hideform").hide();
+        $orderCallForm.find(".form").css("margin-top", "100px");
+        $orderCallForm.find(".headerinfo").text("Форма отправлена успешно");
+    }
+
+    function handleFormError() {
+        $errorBot.show();
+    }
+
+    // Initialize time range slider
+    function initializeSlider() {
+        const timeOptions = Array.from({ length: 10 }, (_, i) => i + 12);
+        const $timeline = $orderCallForm.find(".polzunok");
+        const $timeFromInput = $orderCallForm.find("input[name=timefrom]");
+        const $timeToInput = $orderCallForm.find("input[name=timeto]");
+
+        $timeline.slider({
+            animate: "slow",
+            range: true,
+            min: 12,
+            max: 21,
+            step: 1,
+            values: [14, 19],
+            slide: function (event, ui) {
+                $timeFromInput.val(ui.values[0]);
+                $timeToInput.val(ui.values[1]);
+            }
+        });
+
+        $timeFromInput.val($timeline.slider("values", 0));
+        $timeToInput.val($timeline.slider("values", 1));
+
+        const $resultTime = $("#resulttime");
+        if ($resultTime.length) {
+            timeOptions.forEach(time => $resultTime.append(`<div>${time}</div>`));
+        }
+    }
+
+    // Hide invisible CAPTCHA element
+    function initializeCaptchaVisibility() {
+        const $captcha = $orderCallForm.find(".wa-captcha .g-recaptcha");
+        if ($captcha.length && $captcha.attr("data-size") === "invisible") {
+            $captcha.css("height", "0px");
         }
     }
 });

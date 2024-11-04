@@ -1,0 +1,150 @@
+msgid "A visitor on the website requested a callback"
+msgstr "Посетитель сайта заказал обратный звонок"
+
+msgid "Name: %s"
+msgstr "Имя: %s"
+
+msgid "Phone: %s"
+msgstr "Телефон: %s"
+
+msgid "Preferred call time: from %s to %s"
+msgstr "Желаемое время для звонка: с %s до %s"
+
+msgid "Comment: %s"
+msgstr "Комментарий: %s"
+
+msgid "Email sent successfully"
+msgstr "Электронное письмо успешно отправлено"
+
+msgid "Captcha validation failed. Email not sent."
+msgstr "Проверка капчи не прошла. Электронное письмо не отправлено."
+
+msgid "Form validation failed. Email not sent."
+msgstr "Проверка формы не прошла. Электронное письмо не отправлено."
+
+msgid "Order Callback"
+msgstr "Заказ обратного звонка"
+
+msgid "A plugin for callback requests"
+msgstr "Плагин для обратного звонка"
+
+msgid "Plugin Status"
+msgstr "Состояние плагина"
+
+msgid "To display the plugin, insert the code {shopOrdercallViewHelper::display()} into the theme template"
+msgstr "Для вывода плагина вставьте код {shopOrdercallViewHelper::display()} в шаблон темы дизайна"
+
+msgid "Order a callback"
+msgstr "Заказать обратный звонок"
+
+msgid "Disabled"
+msgstr "Отключен"
+
+msgid "Enabled"
+msgstr "Включен"
+
+msgid "Link Text"
+msgstr "Текст ссылки"
+
+msgid "Specify the link text for the frontend"
+msgstr "Укажите текст ссылки во фронтенде"
+
+msgid "Sender Email"
+msgstr "Email отправителя"
+
+msgid "Specify the sender's email"
+msgstr "Укажите email отправителя"
+
+msgid "Recipient Email"
+msgstr "Email получателя"
+
+msgid "Specify the email to send callback requests to"
+msgstr "Укажите email, на который нужно отправлять заказы обратного звонка"
+
+msgid "Display Agreement with Policy"
+msgstr "Выводить согласие с политикой"
+
+msgid "Link to Policy Page"
+msgstr "Ссылка на страницу политики конфиденциальности"
+
+msgid "Specify the link to the page with the privacy policy"
+msgstr "Укажите ссылку на страницу с политикой обработки конфиденциальной информации"
+
+msgid "Email Subject"
+msgstr "Тема письма"
+
+msgid "Specify the email subject for the admin"
+msgstr "Укажите тему письма администратору"
+
+msgid "Website Address"
+msgstr "Адрес сайта"
+
+msgid "Specify whether to include the website address in the email subject"
+msgstr "Укажите, нужно ли проставлять адрес сайта в теме письма"
+
+msgid "Display Captcha"
+msgstr "Выводить капчу"
+
+msgid "Specify whether to add captcha to the form"
+msgstr "Укажите, нужно ли добавлять капчу в форму"
+
+msgid "A visitor on the website requested a callback"
+msgstr "Посетитель сайта заказал обратный звонок"
+
+msgid "Name: %s"
+msgstr "Имя: %s"
+
+msgid "Phone: %s"
+msgstr "Телефон: %s"
+
+msgid "Preferred call time: from %s to %s"
+msgstr "Желаемое время для звонка: с %s до %s"
+
+msgid "Comment: %s"
+msgstr "Комментарий: %s"
+
+msgid "Email sent successfully"
+msgstr "Электронное письмо успешно отправлено"
+
+msgid "Captcha validation failed. Email not sent."
+msgstr "Проверка капчи не прошла. Электронное письмо не отправлено."
+
+msgid "Form validation failed. Email not sent."
+msgstr "Проверка формы не прошла. Электронное письмо не отправлено."
+
+msgid "Order a Callback"
+msgstr "Заказать обратный звонок"
+
+msgid "Leave your contact details and we will call you back"
+msgstr "Оставьте свои контакты и мы перезвоним Вам"
+
+msgid "Contact Information"
+msgstr "Контактная информация"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Preferred Call Time"
+msgstr "Время для звонка"
+
+msgid "Comment"
+msgstr "Комментарий"
+
+msgid "Incorrect Captcha entered"
+msgstr "Неверно введена Captcha"
+
+msgid "I agree to the processing of "
+msgstr "Согласен на обработку "
+
+msgid "personal data"
+msgstr "персональных данных"
+
+msgid "Order"
+msgstr "Заказать"
+
+
+
+

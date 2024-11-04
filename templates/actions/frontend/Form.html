@@ -3,61 +3,65 @@
         <div class="form">
             <form name="ordercall" class="ordercallsent" method="post">
                 <div class="close"></div>
-                <div class="header">Заказать обратный звонок</div>
-                <div class="headerinfo">Оставьте свои контакты и мы перезвоним Вам</div>
+                <div class="header">{$headerText}</div>
+                <div class="headerinfo">{$headerInfoText}</div>
+
                 <div class="hideform">
-                    <div class="headerblock">Контактная информация</div>
+                    <div class="headerblock">{$contactInfoText}</div>
+
                     <div class="namefield">
                         <div class="field">
-                            Имя
+                            {$nameLabel}
                             <span class="red"></span>
                         </div>
                         <input name="name" type="text">
-                        <div class="message">
-                        </div>
+                        <div class="message"></div>
                     </div>
+
                     <div class="namefield">
                         <div class="field">
-                            Телефон
+                            {$phoneLabel}
                             <span class="red"></span>
                         </div>
                         <input name="phone" type="text" class="phonemask">
-                        <div class="message">
-                        </div>
+                        <div class="message"></div>
                     </div>
+
                     <div class="headerblock timeline">
-                        <div class="title">
-                            Время для звонка
-                        </div>
+                        <div class="title">{$callTimeLabel}</div>
                         <div class="line"></div>
                         <div class="polzunok"></div>
                         <div class="result" id="resulttime"></div>
-                        <input type="hidden" value="" name="timefrom"><input type="hidden" value="" name="timeto">
+                        <input type="hidden" value="" name="timefrom">
+                        <input type="hidden" value="" name="timeto">
                     </div>
+
                     <div class="headerblock">
-                        <div class="title">
-                            Комментарий
-                        </div>
+                        <div class="title">{$commentLabel}</div>
                         <textarea name="comment"></textarea>
                     </div>
-                    {if $captcha == true}
+
+                    {if $captcha}
                     <div class="captcha">{$wa->captcha()}</div>
-                    <div class="errorbot">Неверно введена Captcha</div>
+                    <div class="errorbot">{$captchaError}</div>
                     {/if}
-                    {if $agree == true}
+
+                    {if $agree}
                     <div class="agreeblock">
                         <label class="containercheck">
-                            Согласен на обработку <a href="{$link|escape}" target="_blank">персональных данных</a>
+                            {$agreeText}
+                            <a href="{$policyLink|escape}" target="_blank">{$personalDataLinkText}</a>
                             <input class="agreeform" name="checked" type="checkbox"/>
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     {/if}
-                    <input type="submit" value="Заказать" class="buttonOrdercal" name="button" disabled>
+
+                    <input type="submit" value="{$submitButtonText}" class="buttonOrdercal" name="button" disabled>
                 </div>
             </form>
         </div>
-        <div class="box_shadow">
-        </div>
+        <div class="box_shadow"></div>
     </div>
 </div>
+

@@ -1,0 +1,124 @@
+msgid "A visitor on the website requested a callback"
+msgstr "A visitor on the website requested a callback"
+
+msgid "Name: %s"
+msgstr "Name: %s"
+
+msgid "Phone: %s"
+msgstr "Phone: %s"
+
+msgid "Preferred call time: from %s to %s"
+msgstr "Preferred call time: from %s to %s"
+
+msgid "Comment: %s"
+msgstr "Comment: %s"
+
+msgid "Email sent successfully"
+msgstr "Email sent successfully"
+
+msgid "Captcha validation failed. Email not sent."
+msgstr "Captcha validation failed. Email not sent."
+
+msgid "Form validation failed. Email not sent."
+msgstr "Form validation failed. Email not sent."
+
+msgid "Order Callback"
+msgstr "Order Callback"
+
+msgid "A plugin for callback requests"
+msgstr "A plugin for callback requests"
+
+msgid "Plugin Status"
+msgstr "Plugin Status"
+
+msgid "To display the plugin, insert the code {shopOrdercallViewHelper::display()} into the theme template"
+msgstr "To display the plugin, insert the code {shopOrdercallViewHelper::display()} into the theme template"
+
+msgid "Order a callback"
+msgstr "Order a callback"
+
+msgid "Disabled"
+msgstr "Disabled"
+
+msgid "Enabled"
+msgstr "Enabled"
+
+msgid "Link Text"
+msgstr "Link Text"
+
+msgid "Specify the link text for the frontend"
+msgstr "Specify the link text for the frontend"
+
+msgid "Sender Email"
+msgstr "Sender Email"
+
+msgid "Specify the sender's email"
+msgstr "Specify the sender's email"
+
+msgid "Recipient Email"
+msgstr "Recipient Email"
+
+msgid "Specify the email to send callback requests to"
+msgstr "Specify the email to send callback requests to"
+
+msgid "Display Agreement with Policy"
+msgstr "Display Agreement with Policy"
+
+msgid "Link to Policy Page"
+msgstr "Link to Policy Page"
+
+msgid "Specify the link to the page with the privacy policy"
+msgstr "Specify the link to the page with the privacy policy"
+
+msgid "Email Subject"
+msgstr "Email Subject"
+
+msgid "Specify the email subject for the admin"
+msgstr "Specify the email subject for the admin"
+
+msgid "Website Address"
+msgstr "Website Address"
+
+msgid "Specify whether to include the website address in the email subject"
+msgstr "Specify whether to include the website address in the email subject"
+
+msgid "Display Captcha"
+msgstr "Display Captcha"
+
+msgid "Specify whether to add captcha to the form"
+msgstr "Specify whether to add captcha to the form"
+
+msgid "Order a Callback"
+msgstr "Order a Callback"
+
+msgid "Leave your contact details and we will call you back"
+msgstr "Leave your contact details and we will call you back"
+
+msgid "Contact Information"
+msgstr "Contact Information"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Preferred Call Time"
+msgstr "Preferred Call Time"
+
+msgid "Comment"
+msgstr "Comment"
+
+msgid "Incorrect Captcha entered"
+msgstr "Incorrect Captcha entered"
+
+msgid "I agree to the processing of "
+msgstr "I agree to the processing of "
+
+msgid "personal data"
+msgstr "personal data"
+
+msgid "Order"
+msgstr "Order"
+
+
